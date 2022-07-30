@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::Layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>This is Sign up page</title>
+</head>
+
+
+
+<body>
+	<section>
+
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-md-8 offset-md-2">
+
+					<div class="my-card mt-3">
+
+						<div th:if="${session.message}"
+							th:classappend="${session.message.type}" class="alert"
+							role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+
+						<div class="container text-center">
+
+							<img class="" style="width: 80px;" src=""
+								th:src="@{/img/membership.png}" alt="" />
+
+						</div>
+
+
+						<h1 class="text-center ">Register here !!</h1>
+
+						<form novalidate="novalidate" action=""
+							th:action="@{/do_register}" method="post" th:object="${user}">
+
+							<!--name  -->
+
+							<div class="mb-3">
+								<label for="name_field" class="form-label"> Name</label> <input
+									name="name" type="text" class="form-control"
+									th:classappend="${#fields.hasErrors('name') ? 'is-invalid':'' }"
+									id="name_field" aria-describedby="emailHelp"
+									placeholder="Enter name" required th:value="${user.name}" />
+
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('name')}" th:text="${e}">Please
+									provide a valid Name.</div>
+
+							</div>
+
+							<!--email  -->
+
+							<div class="mb-3">
+								<label for="email_field" class="form-label"> Email</label> <input
+									name="email" type="email" class="form-control" id="email_field"
+									aria-describedby="emailHelp" placeholder="Enter email" required
+									th:value="${user.email}" />
+
+							</div>
+
+							<!--password  -->
+
+							<div class="mb-3">
+								<label for="password_field" class="form-label"> Password</label>
+								<input name="password" type="password" class="form-control"
+									id="password_field" aria-describedby="emailHelp"
+									placeholder="Enter password" required
+									th:value="${user.password}" />
+
+							</div>
+
+							<!--confirm password  -->
+
+							<div class="mb-3">
+								<label for="confirm_password_field" class="form-label">confirm
+									Password</label> <input name="repeatPassword" type="password"
+									class="form-control" id="password_field"
+									aria-describedby="emailHelp"
+									placeholder="Enter confirm password" required
+									th:value="${user.repeatPassword}" />
+
+							</div>
+
+							<!--Mobile Number -->
+
+							<div class="mb-3">
+								<label for="password_field" class="form-label">Phone</label> <input
+									name="mobile_number" type="number" class="form-control"
+									th:classappend="${#fields.hasErrors('mobile_number') ? 'is-invalid':'' }"
+									id="password_field" aria-describedby="emailHelp"
+									placeholder="enter 10 digit number" required
+									th:value="${user.mobile_number}" />
+
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('mobile_number')}" th:text="${e}">Please
+									provide a valid Name.</div>
+
+							</div>
+
+							<!--Gender -->
+
+							<label for="gender_field" class="form-label"> Gender</label>
+							<div class="mb-3">
+
+								<div class="form-check form-check-inline">
+
+									<input class="form-check-input" type="radio" name="gender"
+										id="gender" value="male"> <label
+										class="form-check-label" for="inlineRadio1">Male</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="gender"
+										id="gender" value="female"> <label
+										class="form-check-label" for="inlineRadio2">Female</label>
+								</div>
+
+							</div>
+
+							<!--pincode -->
+
+							<div class="mb-3">
+								<label for="pincode_field" class="form-label"> Pincode</label> <input
+									name="pincode" type="number" class="form-control"
+									th:classappend="${#fields.hasErrors('pincode') ? 'is-invalid':'' }"
+									id="pincode_field" aria-describedby="emailHelp"
+									placeholder="enter pincode" required th:value="${user.pincode}" />
+
+								<div class="invalid-feedback"
+									th:each="e : ${#fields.errors('pincode')}" th:text="${e}">Please
+									provide a valid Name.</div>
+
+							</div>
+
+
+
+
+							<!--date of birth  -->
+
+							<div class="mb-3">
+								<label for="dob_field" class="form-label"> DOB</label> <input
+									name="dob" type="date" class="form-control" id="dob_field"
+									aria-describedby="emailHelp" placeholder="DOB" required
+									th:value="${user.dob}" />
+
+							</div>
+
+							<!--city  -->
+
+							<div class="input-group mb-3">
+								<label class="input-group-text" for="inputGroupSelect01">City</label>
+								<select name="city" class="form-select" id="inputGroupSelect01">
+									<option value="default">Select a country</option>
+
+									<option th:each=" city : ${cityNameList}"
+										th:value="${city.cityName}" th:text="${city.cityName}" />
+								</select>
+							</div>
+
+							<!--about  -->
+
+
+							<div class="mb-3">
+								<textarea name="about" placeholder="Enter address " rows="3"
+									class="form-control"></textarea>
+
+							</div>
+
+							<!--team and condition  -->
+
+							<div class="mb-3 form-check">
+								<label for="agreement">Accept terms and condition </label> <input
+									type="checkbox" name="agreement" class="form-check-input"
+									id=agreement>
+
+							</div>
+
+							<div class="container text-center ">
+
+								<button type="submit" class="btn bg-primary text-white ">Submit</button>
+
+								<button type="reset" class="btn btn-warning text-white ">Reset</button>
+
+							</div>
+
+
+
+						</form>
+
+
+
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+	</section>
+
+</body>
+</html>

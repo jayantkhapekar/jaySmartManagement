@@ -8,7 +8,7 @@ public class SmartManagementApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmartManagementApplication.class, args);
-		System.out.print("Smart Management");
+		System.out.print("Smart Management jayant");
 	}
 
 }
